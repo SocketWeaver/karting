@@ -1,6 +1,6 @@
-# Third-person Shooter
+# Karting
 
-![Alt text](demo.gif?raw=true "SocketWeaver Third-person demo")
+![Alt text](demo.gif?raw=true "SocketWeaver Multiplayer racing demo")
 
 ## Requirements
 1. Unity 2.18.3.4 or later. You can download the latest version of Unity here: https://unity3d.com/get-unity/download
@@ -9,11 +9,11 @@
 > All accounts get 20GB of data for **FREE** every month. 
 
 ## What we are making
-In this tutorial, we are going to make a multiplayer top-down shooter.
+In this tutorial, we are going to make a multiplayer racing game in Unity.
 We will show you the process step-by-step. By the time you finished reading this tutorial, you will be ready to start converting your own game or explore more advanced features that our Unity SDK SWNetwork provides.
 
 ## Source Code
-The source code of this tutorial is hosted at: https://github.com/SocketWeaver/third-persion
+The source code of this tutorial is hosted at: https://github.com/SocketWeaver/karting
 
 ### The repository has two Unity Projects:
 #### Starter
