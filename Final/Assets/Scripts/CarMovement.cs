@@ -30,23 +30,6 @@ public class CarMovement : MonoBehaviour
 
     NetworkID networkId;
 
-    public void OnSpawnerReady(bool finishedSceneSetup)
-    {
-        if (!finishedSceneSetup)
-        {
-            if (NetworkClient.Instance.IsHost)
-            {
-                NetworkClient.Instance.LastSpawner.SpawnForPlayer(0, 1);
-            }
-            else
-            {
-                NetworkClient.Instance.LastSpawner.SpawnForPlayer(0, 0);
-            }
-
-            NetworkClient.Instance.LastSpawner.PlayerFinishedSceneSetup();
-        }
-    }
-
     private void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
