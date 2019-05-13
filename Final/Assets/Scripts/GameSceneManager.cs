@@ -34,7 +34,8 @@ public class GameSceneManager : MonoBehaviour
         GameObject go = other.gameObject;
         NetworkID networkID = go.GetComponent<NetworkID>();
 
-        // check if the player is the local player
+        // check if the player owns the GameObject, we don't care when the other player crosses the finish line. 
+        // Players update their own lap counts.
         if (networkID.IsMine)
         {
             lap_ = lap_ + 1;
@@ -112,7 +113,7 @@ public class GameSceneManager : MonoBehaviour
         if (!finishedSceneSetup)
         {
             /* 
-                assign different spawn point for the host player and the other players in the room
+                assign different spawn points for the players in the room
                 This is okay for this tutorial as we only have 2 players in a room and we are not handling host migration.
                 To properly assign spawn points, you should use GameDataManger or custom room data.
             */
@@ -135,7 +136,7 @@ public class GameSceneManager : MonoBehaviour
     {
         int playerPressedEnter = gameDataManager.GetPropertyWithName(PLAYER_PRESSED_ENTER).GetIntValue();
 
-        // check if all players has pressed Enter
+        // check if all players have pressed Enter
         if(playerPressedEnter == 2)
         {
             // start the countdown
@@ -148,7 +149,7 @@ public class GameSceneManager : MonoBehaviour
     {
         int playerPressedEnter = gameDataManager.GetPropertyWithName(PLAYER_PRESSED_ENTER).GetIntValue();
 
-        // check if all players has pressed Enter
+        // check if all players have pressed Enter
         if (playerPressedEnter == 2)
         {
             // the player probably got disconnected from the room
