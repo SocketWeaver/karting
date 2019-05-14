@@ -105,7 +105,7 @@ public class CarMovement : MonoBehaviour
         }
         else
         {
-            // apply the rotations for remote copy
+            // apply the rotation updates for remote copies
             frontLeftTransform.rotation = frontWheelRot;
             frontRightTransform.rotation = frontWheelRot;
             rearLeftTransform.rotation = rearWheelRot;

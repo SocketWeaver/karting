@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SWNetwork;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSceneManager : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class GameSceneManager : MonoBehaviour
                 {
                     guiManager.SetMainText("2nd");
                 }
+
+                State = GameState.finished;
             }
         }
     }
@@ -77,6 +80,34 @@ public class GameSceneManager : MonoBehaviour
                 gameDataManager.Modify(PLAYER_PRESSED_ENTER, playerPressedEnter + 1);
             }
         }
+        else if (State == GameState.finished)
+        {
+            if (Input.GetKeyUp(KeyCode.Return))
+            {
+                Debug.Log("Quiting...");
+                Exit();
+            }
+        }
+    }
+
+    void Exit()
+    {
+        // Disconnects from the game servers
+        NetworkClient.Instance.DisconnectFromRoom();
+
+        // leaves room in the lobby server.
+        NetworkClient.Lobby.LeaveRoom((bool ok, SWLobbyError error) =>
+        {
+            if (!ok)
+            {
+                Debug.LogError(error);
+            }
+
+            Debug.Log("Left room");
+
+            // load the lobby scene
+            SceneManager.LoadScene(0);
+        });
     }
 
     void Countdown()
