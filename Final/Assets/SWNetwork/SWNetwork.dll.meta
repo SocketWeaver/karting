@@ -22,7 +22,13 @@ PluginImporter:
       type: 3}
     SWNetwork.RealtimeAgent: {fileID: 2800000, guid: 88856f4ed4eb64e50b0718f814c931f9,
       type: 3}
+    SWNetwork.RealtimeFilter: {fileID: 2800000, guid: 10625bd45773145f59eeeae0d1199276,
+      type: 3}
     SWNetwork.RemoteEventAgent: {fileID: 2800000, guid: 06014ae01ad2a44489a12af706e78d8f,
+      type: 3}
+    SWNetwork.RoomPropertyAgent: {fileID: 2800000, guid: 8fcc5bb42490a470193fd11bf3457e7c,
+      type: 3}
+    SWNetwork.RoomRemoteEventAgent: {fileID: 2800000, guid: 127fb7d3fabc5420b8b60c3a4e843ca8,
       type: 3}
     SWNetwork.SWNetworkClient: {fileID: 2800000, guid: 82225fbba74944dd8bbdf975801093f8,
       type: 3}

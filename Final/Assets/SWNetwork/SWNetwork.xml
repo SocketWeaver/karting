@@ -4,11 +4,6 @@
         <name>SWNetwork</name>
     </assembly>
     <members>
-        <member name="F:SWNetwork.GameDataManager.dataManagerId">
-            <summary>
-            ID used to identify a Game data manager, you can have multiple GameDataManagers, make sure you assigned different dataManagerId to them.
-            </summary>
-        </member>
         <member name="T:SWNetwork.SWLobbyError">
             <summary>
             The error that occurred when a Lobby API operation fails.
@@ -68,6 +63,11 @@
             room custom data in string format.
             </summary>
         </member>
+        <member name="F:SWNetwork.SWRoom.progressData">
+            <summary>
+            room progress data in string format.
+            </summary>
+        </member>
         <member name="M:SWNetwork.SWRoom.GetCustomData``1">
             <summary>
             Get the deserialized room custom data.
@@ -80,6 +80,19 @@
             Gets the room custom data in string format.
             </summary>
             <returns>The room custom data in string format.</returns>
+        </member>
+        <member name="M:SWNetwork.SWRoom.GetProgressData``1">
+            <summary>
+            Get the deserialized room progress data.
+            </summary>
+            <returns>The deserialized room progress data.</returns>
+            <typeparam name="T">The 1st type parameter.</typeparam>
+        </member>
+        <member name="M:SWNetwork.SWRoom.GetProgressDataString">
+            <summary>
+            Gets the room progress data in string format.
+            </summary>
+            <returns>The room progress data in string format.</returns>
         </member>
         <member name="T:SWNetwork.SWPlayer">
             <summary>
@@ -317,7 +330,7 @@
         </member>
         <member name="E:SWNetwork.SWLobby.OnRoomStartingEvent">
             <summary>
-            Invoked when the room changes to the Starting state.
+            Invoked when the room changes to the Starting _state.
             Game servers are being prepared for the room.
             If no available game servers are found, FailedToStartRoomEvent will be invoked.
             If game servers are prepared, RoomReadyEvent will be invoked.
@@ -325,7 +338,7 @@
         </member>
         <member name="E:SWNetwork.SWLobby.OnRoomReadyEvent">
             <summary>
-            Invoked when the room changes to the Rooms Set state.
+            Invoked when the room changes to the Rooms Set _state.
             Game servers for the room are prepared.
             Use NetworkClient.Instance.ConnectToRoom(Action) to connect to the game servers.
             </summary>
@@ -479,14 +492,14 @@
             <param name="messageData">Serializable object message data.</param>
             <param name="callback">The method to invoke when the message player operation is complete.</param>
         </member>
-        <member name="M:SWNetwork.SWLobby.MessageRoom(System.Object,System.Action{System.Boolean,System.Object,SWNetwork.SWLobbyError})">
+        <member name="M:SWNetwork.SWLobby.MessageRoom(System.Object,System.Action{System.Boolean,SWNetwork.SWLobbyError})">
             <summary>
             Called by players to begin an asynchronous operation to send message to other players in the same room using the specified serializable object messageData.
             </summary>
             <param name="messageData">Serializable object message data.</param>
             <param name="callback">The method to invoke when the message room operation is complete.</param>
         </member>
-        <member name="M:SWNetwork.SWLobby.MessageRoom(System.String,System.Action{System.Boolean,System.Object,SWNetwork.SWLobbyError})">
+        <member name="M:SWNetwork.SWLobby.MessageRoom(System.String,System.Action{System.Boolean,SWNetwork.SWLobbyError})">
             <summary>
             Called by players to begin an asynchronous operation to send message to other players in the same room using the specified string messageData.
             </summary>
@@ -507,6 +520,20 @@
             <param name="customData">String custom data.</param>
             <param name="callback">The method to invoke when the change room custom data operation is complete.</param>
         </member>
+        <member name="M:SWNetwork.SWLobby.ChangeRoomProgressData(System.Object,System.Action{System.Boolean,SWNetwork.SWLobbyError})">
+            <summary>
+            Called by room owners to begin an asynchronous operation to change the progress data of their rooms using the specified serializable object.
+            </summary>
+            <param name="progressData">Serializable object progress data.</param>
+            <param name="callback">The method to invoke when the change room progress data operation is complete.</param>
+        </member>
+        <member name="M:SWNetwork.SWLobby.ChangeRoomProgressData(System.String,System.Action{System.Boolean,SWNetwork.SWLobbyError})">
+            <summary>
+            Called by room owners to begin an asynchronous operation to change the progress data of their rooms using the specified string.
+            </summary>
+            <param name="progressData">String progress data.</param>
+            <param name="callback">The method to invoke when the change room progress data operation is complete.</param>
+        </member>
         <member name="M:SWNetwork.SWLobby.ChangeRoomSettings(System.Int32,System.Boolean,System.Action{System.Boolean,SWNetwork.SWLobbyError})">
             <summary>
             Called by room owners to begin an asynchronous operation to change the settings of their rooms using the specified playerTimeToLive and isPrivate.
@@ -520,6 +547,12 @@
             Called by players to begin an asynchronous operation to get the custom data of the local player's current room.
             </summary>
             <param name="callback">The method to invoke when the get room custom data operation is complete.</param>
+        </member>
+        <member name="M:SWNetwork.SWLobby.GetRoomProgressData(System.Action{System.Boolean,SWNetwork.SWGetRoomProgressDataReply,SWNetwork.SWLobbyError})">
+            <summary>
+            Called by players to begin an asynchronous operation to get the progress data of the local player's current room.
+            </summary>
+            <param name="callback">The method to invoke when the get room progress data operation is complete.</param>
         </member>
         <member name="M:SWNetwork.SWLobby.FilterRoom(SWNetwork.SWLobbyFilterData,System.Byte,System.Action{System.Boolean,SWNetwork.SWGetRoomFilterReply,SWNetwork.SWLobbyError})">
             <summary>
@@ -601,7 +634,7 @@
             </summary>
             <value>The player identifier.</value>
         </member>
-        <member name="F:SWNetwork.NetworkClient.loggingLevel">
+        <member name="F:SWNetwork.NetworkClient.LoggingLevel">
             <summary>
             The logging level.
             </summary>
@@ -640,11 +673,9 @@
             <returns>The spawner.</returns>
             <param name="spawnerId">Spawner identifier.</param>
         </member>
-        <member name="F:SWNetwork.NetworkID.type">
+        <member name="F:SWNetwork.NetworkID.Filterable">
             <summary>
-            The type of the Networked GameObject
-            Player: Player controlled GameObject
-            Non-Player: Non-player controlled GameObject
+            Indicates if the Networked GameObject can be filtered by the RealtimeFilter.
             </summary>
         </member>
         <member name="P:SWNetwork.NetworkID.NetworkObjectId">
@@ -664,6 +695,199 @@
             Find out if local player is the owner of the networked GameObject
             </summary>
             <value><c>true</c> if is mine; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:SWNetwork.NetworkID.IsHost">
+            <summary>
+            Find out if the networked GameObject is owned by the room host
+            </summary>
+            <value><c>true</c> if is owned by the host; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="F:SWNetwork.RealtimeFilter.RangeBuffer">
+            <summary>
+            The range buffer. Added to the far clipping plane of the set camera to determine the detection range.
+            </summary>
+        </member>
+        <member name="F:SWNetwork.RealtimeFilter.VerticalSizeBuffer">
+            <summary>
+            The vertical size buffer. Added to the vertical orthographic size of the set camera to determine the vertical detection size.
+            </summary>
+        </member>
+        <member name="F:SWNetwork.RealtimeFilter.HorizontalSizeBuffer">
+            <summary>
+            The horizontal size buffer. Added to the horizontal orthographic size of the set camera to determine the horizontal detection size.
+            </summary>
+        </member>
+        <member name="F:SWNetwork.RealtimeFilter.FOVAngleBuffer">
+            <summary>
+            The FOV Angle buffer. Added to the field of view angle of the set camera. 
+            </summary>
+        </member>
+        <member name="F:SWNetwork.RealtimeFilter.FirstPersonDetectionRange">
+            <summary>
+            Useful for proximity detection. Nearby Networked GameObjects that are not visible to the set camera will still be treated as interested.
+            </summary>
+        </member>
+        <member name="F:SWNetwork.RealtimeFilter.SimplifiedCalculation">
+            <summary>
+            Use simplified calculation.
+            </summary>
+        </member>
+        <member name="P:SWNetwork.RealtimeFilter.TargetCamera">
+            <summary>
+            Gets or sets the target camera.
+            Make sure to call RecalculateFilterWithCameraSettings when you change the target camera.
+            </summary>
+            <value>The target camera.</value>
+        </member>
+        <member name="M:SWNetwork.RealtimeFilter.RecalculateFilterWithCameraSettings">
+            <summary>
+            Recalculates the filter parameters using the settings on the set camera.
+            Call thie method when you change the Target Camera.
+            </summary>
+        </member>
+        <member name="M:SWNetwork.SWRemoteEventAgent.Invoke(System.String)">
+            <summary>
+            Invoke the event with the specified eventName.
+            </summary>
+            <param name="eventName">Event name.</param>
+        </member>
+        <member name="M:SWNetwork.SWRemoteEventAgent.Invoke(System.String,SWNetwork.SWNetworkMessage)">
+            <summary>
+            Invoke the event with the specified eventName and msg.
+            </summary>
+            <param name="eventName">Event name.</param>
+            <param name="msg">Message.</param>
+        </member>
+        <member name="T:SWNetwork.SWSyncConflict">
+            <summary>
+            Sync conflict.
+            </summary>
+        </member>
+        <member name="F:SWNetwork.SWSyncConflict.oldLocalValue">
+            <summary>
+            The old local value.
+            </summary>
+        </member>
+        <member name="F:SWNetwork.SWSyncConflict.newLocalValue">
+            <summary>
+            The new local value.
+            </summary>
+        </member>
+        <member name="F:SWNetwork.SWSyncConflict.remoteValue">
+            <summary>
+            The remote value.
+            </summary>
+        </member>
+        <member name="F:SWNetwork.SWSyncConflict.type">
+            <summary>
+            The type of the Synced Property.
+            </summary>
+        </member>
+        <member name="M:SWNetwork.SWSyncConflict.GetRemoteTinyJsonValue``1">
+            <summary>
+            Gets the deserialized remote tiny json value.
+            </summary>
+            <returns>The remote tiny json value.</returns>
+            <typeparam name="T">The 1st type parameter.</typeparam>
+        </member>
+        <member name="M:SWNetwork.SWSyncConflict.GetRemoteValue``1">
+            <summary>
+            Gets the deserialized remote value.
+            </summary>
+            <returns>The remote value.</returns>
+            <typeparam name="T">The 1st type parameter.</typeparam>
+        </member>
+        <member name="P:SWNetwork.SWSyncedProperty.Busy">
+            <summary>
+            Gets a value indicating whether this <see cref="T:SWNetwork.SWSyncedProperty"/> is busy.
+            Synced Property is busy if it is uploading its local value to the server.
+            If you modify a Synced Property that is busy, the new value will be buffered. 
+            Note: Only the new value of the last modification is buffered and uploaded to the server.
+            </summary>
+            <value><c>true</c> if busy; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:SWNetwork.SWSyncedProperty.IsReady">
+            <summary>
+            Gets a value indicating whether this <see cref="T:SWNetwork.SWSyncedProperty"/> is ready to be modified.
+            </summary>
+            <value><c>true</c> if is ready; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:SWNetwork.SWSyncedProperty.version">
+            <summary>
+            Gets the version.
+            </summary>
+            <value>The version.</value>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetValue">
+            <summary>
+            Gets the value.
+            For TinyJson and Serializable Synced Properteis, the values are returned as string.
+            Use generic GetTinyJsonValue and generic GetValue to get the deserialized object of TinyJson and Serializable Synced Properteis.
+            </summary>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetIntValue">
+            <summary>
+            Gets the int value.
+            </summary>
+            <returns>The int value.</returns>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetBoolValue">
+            <summary>
+            Gets the bool value.
+            </summary>
+            <returns><c>true</c>, if bool value was gotten, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetFloatValue">
+            <summary>
+            Gets the float value.
+            </summary>
+            <returns>The float value.</returns>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetStringValue">
+            <summary>
+            Gets the string value.
+            </summary>
+            <returns>The string value.</returns>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetVector2Value">
+            <summary>
+            Gets the vector2 value.
+            </summary>
+            <returns>The vector2 value.</returns>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetVector3Value">
+            <summary>
+            Gets the vector3 value.
+            </summary>
+            <returns>The vector3 value.</returns>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetVector4Value">
+            <summary>
+            Gets the vector4 value.
+            </summary>
+            <returns>The vector4 value.</returns>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetQuaternionValue">
+            <summary>
+            Gets the quaternion value.
+            </summary>
+            <returns>The quaternion value.</returns>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetTinyJsonValue``1">
+            <summary>
+            Gets the deserialized Tiny Json object.
+            </summary>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.GetValue``1">
+            <summary>
+            Gets the deserialized serializable object.
+            </summary>
+        </member>
+        <member name="M:SWNetwork.SWSyncedProperty.Resolve(System.Object)">
+            <summary>
+            Resolve the sync conflict of a Synced Property with the specified value.
+            </summary>
+            <param name="value">Value.</param>
         </member>
         <member name="T:SWNetwork.SceneSpawnerReadyEvent">
             <summary>
@@ -900,12 +1124,12 @@
             NetworkObjectType
             </summary>
         </member>
-        <member name="F:SWNetwork.SWSpawnerRecord.v">
+        <member name="F:SWNetwork.SWSpawnerRecord.vx">
             <summary>
             position.
             </summary>
         </member>
-        <member name="F:SWNetwork.SWSpawnerRecord.r">
+        <member name="F:SWNetwork.SWSpawnerRecord.rx">
             <summary>
             rotation.
             </summary>

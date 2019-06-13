@@ -570,15 +570,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 297210434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -609403171, guid: 6a67afbfe15ab9c4696e982c25d07a84, type: 3}
+  m_Script: {fileID: 1945091883, guid: 6a67afbfe15ab9c4696e982c25d07a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   properties_:
-  - Foldout: 1
+  - Foldout: 0
     name: PlayersPressedEnter
     type: 2
     conflictResolution: 2
-    compressed: 0
     data: 
     onValueChange:
       m_PersistentCalls:
@@ -632,7 +631,6 @@ MonoBehaviour:
     name: WinnerId
     type: 3
     conflictResolution: 1
-    compressed: 0
     data: 
     onValueChange:
       m_PersistentCalls:
@@ -672,7 +670,7 @@ MonoBehaviour:
       m_TypeName: SWNetwork.SWSyncedPropertyInitialFetchFinishedEvent, SWNetwork,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   restoreState: 1
-  dataManagerId: 1
+  AgentId: 1
 --- !u!114 &297210442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,6 +684,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  showVisibleGizmo: 1
+  Filterable: 0
+  visibleSize: 1
 --- !u!1 &301963248 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: ed4e35d495e1b44989942b90d4fb7940,
@@ -1619,6 +1620,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  showVisibleGizmo: 1
+  Filterable: 0
+  visibleSize: 1
 --- !u!1 &1306018690 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100032, guid: ed4e35d495e1b44989942b90d4fb7940,
@@ -2344,7 +2348,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 112, guid: 981378ad8074d46f59ab1ded9a19caac, type: 3}
-    - {fileID: 113, guid: 981378ad8074d46f59ab1ded9a19caac, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 981378ad8074d46f59ab1ded9a19caac, type: 3}

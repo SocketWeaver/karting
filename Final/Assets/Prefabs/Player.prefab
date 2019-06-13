@@ -383,7 +383,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 83}
+  - {fileID: 75}
   m_Father: {fileID: 65}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -507,9 +507,9 @@ GameObject:
   - component: {fileID: 71}
   - component: {fileID: 106}
   - component: {fileID: 107}
+  - component: {fileID: 112}
+  - component: {fileID: 113}
   - component: {fileID: 114}
-  - component: {fileID: 4640587218537785080}
-  - component: {fileID: 5148247972372516920}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -566,7 +566,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 2, z: 14}
   m_Center: {x: 0, y: 1.45, z: 0}
---- !u!114 &114
+--- !u!114 &112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -592,7 +592,7 @@ MonoBehaviour:
   centerOfMass: {fileID: 64}
   frontWheelRot: {x: 0, y: 0, z: 0, w: 0}
   rearWheelRot: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4640587218537785080
+--- !u!114 &113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -605,7 +605,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
---- !u!114 &5148247972372516920
+  showVisibleGizmo: 1
+  Filterable: 0
+  visibleSize: 1
+--- !u!114 &114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -618,7 +621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncedGenerics:
-  - syncTarget: {fileID: 114}
+  - syncTarget: {fileID: 112}
     enabled: 1
     foldout: 1
     bandwidth: 6
@@ -688,6 +691,16 @@ MonoBehaviour:
         maxInt: 300
         fieldInfoName: 
         isProperty: 0
+      wSyncField:
+        enabled: 0
+        min: -300
+        max: 300
+        resolution: 3
+        valueType: 0
+        minInt: -300
+        maxInt: 300
+        fieldInfoName: 
+        isProperty: 0
     - fieldInfoName: rearWheelRot
       isProperty: 0
       xSyncField:
@@ -720,10 +733,21 @@ MonoBehaviour:
         maxInt: 300
         fieldInfoName: 
         isProperty: 0
+      wSyncField:
+        enabled: 0
+        min: -300
+        max: 300
+        resolution: 3
+        valueType: 0
+        minInt: -300
+        maxInt: 300
+        fieldInfoName: 
+        isProperty: 0
     syncVector4Fields: []
   syncedTransform:
     interpolate: 20
     smoothLevel: 3
+    snapDistance: 30
     readFunction: 1
     bandwidth: 12
     padding: 2
@@ -799,6 +823,7 @@ MonoBehaviour:
       valueType: 0
       minInt: -300
       maxInt: 300
+    externalFreeze: 0.2
   syncedAnimator:
     animator: {fileID: 0}
     syncParameters: []
@@ -806,7 +831,7 @@ MonoBehaviour:
     padding: 0
   syncTransFormEnabled: 1
   syncAnimatorEnabled: 0
-  syncTransFormFoldout: 0
+  syncTransFormFoldout: 1
   syncAnimatorFoldout: 0
   restoreState: 1
 --- !u!1 &50
@@ -949,7 +974,7 @@ Transform:
   m_Father: {fileID: 63}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &61
+--- !u!1 &53
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -957,7 +982,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 83}
+  - component: {fileID: 75}
   - component: {fileID: 98}
   - component: {fileID: 87}
   m_Layer: 0
@@ -967,13 +992,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &83
+--- !u!4 &75
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61}
+  m_GameObject: {fileID: 53}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.2399902, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
@@ -987,7 +1012,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61}
+  m_GameObject: {fileID: 53}
   m_Mesh: {fileID: 4300008, guid: d22b7728533c9428791e09af1e1bf490, type: 3}
 --- !u!23 &87
 MeshRenderer:
@@ -995,7 +1020,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61}
+  m_GameObject: {fileID: 53}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

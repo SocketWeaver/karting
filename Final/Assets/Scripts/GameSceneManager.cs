@@ -18,7 +18,7 @@ public class GameSceneManager : MonoBehaviour
     int countdown_;
     int lap_;
 
-    GameDataManager gameDataManager;
+    RoomPropertyAgent roomPropertyAgent;
     const string PLAYER_PRESSED_ENTER = "PlayersPressedEnter";
     const string WIINER_ID = "WinnerId";
 
@@ -26,8 +26,8 @@ public class GameSceneManager : MonoBehaviour
     {
         guiManager.SetLapRecord(lap_, lapsToWin);
 
-        // get a reference of the gameDataManager component
-        gameDataManager = GetComponent<GameDataManager>();
+        // get a reference of the RoomPropertyAgent component
+        roomPropertyAgent = GetComponent<RoomPropertyAgent>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -45,14 +45,14 @@ public class GameSceneManager : MonoBehaviour
             if (lap_ == lapsToWin)
             {
                 Debug.Log("Winner!!");
-                string winnerId = gameDataManager.GetPropertyWithName(WIINER_ID).GetStringValue();
+                string winnerId = roomPropertyAgent.GetPropertyWithName(WIINER_ID).GetStringValue();
                 Debug.Log("OnTriggerEnter winnerID " + winnerId);
 
                 // if winnerId is empty, local player is the winner
                 // If the winner did not leave the game and finished the laps again, the player should still be the winner
                 if (string.IsNullOrEmpty(winnerId) || winnerId.Equals(NetworkClient.Instance.PlayerId))
                 {
-                    gameDataManager.Modify(WIINER_ID, NetworkClient.Instance.PlayerId);
+                    roomPropertyAgent.Modify(WIINER_ID, NetworkClient.Instance.PlayerId);
                     guiManager.SetMainText("1st");
                 }
                 else
@@ -76,8 +76,8 @@ public class GameSceneManager : MonoBehaviour
                 State = GameState.starting;
 
                 // Modify the PlayersPressedEnter sync property.
-                int playerPressedEnter = gameDataManager.GetPropertyWithName(PLAYER_PRESSED_ENTER).GetIntValue();
-                gameDataManager.Modify(PLAYER_PRESSED_ENTER, playerPressedEnter + 1);
+                int playerPressedEnter = roomPropertyAgent.GetPropertyWithName(PLAYER_PRESSED_ENTER).GetIntValue();
+                roomPropertyAgent.Modify(PLAYER_PRESSED_ENTER, playerPressedEnter + 1);
             }
         }
         else if (State == GameState.finished)
@@ -146,7 +146,7 @@ public class GameSceneManager : MonoBehaviour
             /* 
                 assign different spawn points for the players in the room
                 This is okay for this tutorial as we only have 2 players in a room and we are not handling host migration.
-                To properly assign spawn points, you should use GameDataManger or custom room data.
+                To properly assign spawn points, you should use roomPropertyAgent or custom room data.
             */
             if (NetworkClient.Instance.IsHost)
             {
@@ -165,7 +165,7 @@ public class GameSceneManager : MonoBehaviour
     // PlayersPressedEnter events
     public void OnPlayersPressedEnterValueChanged()
     {
-        int playerPressedEnter = gameDataManager.GetPropertyWithName(PLAYER_PRESSED_ENTER).GetIntValue();
+        int playerPressedEnter = roomPropertyAgent.GetPropertyWithName(PLAYER_PRESSED_ENTER).GetIntValue();
 
         // check if all players have pressed Enter
         if(playerPressedEnter == 2)
@@ -178,7 +178,7 @@ public class GameSceneManager : MonoBehaviour
 
     public void OnPlayersPressedEnterValueReady()
     {
-        int playerPressedEnter = gameDataManager.GetPropertyWithName(PLAYER_PRESSED_ENTER).GetIntValue();
+        int playerPressedEnter = roomPropertyAgent.GetPropertyWithName(PLAYER_PRESSED_ENTER).GetIntValue();
 
         // check if all players have pressed Enter
         if (playerPressedEnter == 2)
@@ -207,13 +207,13 @@ public class GameSceneManager : MonoBehaviour
     // WinnerId events
     public void OnWinnerIdValueChanged()
     {
-        string winnerId = gameDataManager.GetPropertyWithName(WIINER_ID).GetStringValue();
+        string winnerId = roomPropertyAgent.GetPropertyWithName(WIINER_ID).GetStringValue();
         Debug.Log("OnWinnerIdValueChanged winnerID " + winnerId);
     }
 
     public void OnWinnerIdValueReady()
     {
-        string winnerId = gameDataManager.GetPropertyWithName(WIINER_ID).GetStringValue();
+        string winnerId = roomPropertyAgent.GetPropertyWithName(WIINER_ID).GetStringValue();
         Debug.Log("OnWinnerIdValueReady winnerID " + winnerId);
     }
 }
