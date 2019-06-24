@@ -31,8 +31,8 @@ public class Lobby : MonoBehaviour
         // Add an event handler for the OnFailedToStartRoomEvent
         NetworkClient.Lobby.OnFailedToStartRoomEvent += Lobby_OnFailedToStartRoomEvent;
 
-        // Add an event handler for the OnLobbyConncetedEvent
-        NetworkClient.Lobby.OnLobbyConncetedEvent += Lobby_OnLobbyConncetedEvent;
+        // Add an event handler for the OnLobbyConnectedEvent
+        NetworkClient.Lobby.OnLobbyConnectedEvent += Lobby_OnLobbyConncetedEvent;
 
         // allow player to register
         registerButton.gameObject.SetActive(true);
@@ -44,7 +44,7 @@ public class Lobby : MonoBehaviour
         // remove the handlers
         NetworkClient.Lobby.OnRoomReadyEvent -= Lobby_OnRoomReadyEvent;
         NetworkClient.Lobby.OnFailedToStartRoomEvent -= Lobby_OnFailedToStartRoomEvent;
-        NetworkClient.Lobby.OnLobbyConncetedEvent -= Lobby_OnLobbyConncetedEvent;
+        NetworkClient.Lobby.OnLobbyConnectedEvent -= Lobby_OnLobbyConncetedEvent;
     }
 
     /* Lobby events handlers */

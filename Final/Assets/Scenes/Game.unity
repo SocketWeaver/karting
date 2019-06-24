@@ -684,8 +684,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  dynamicallySpawned: 1
+  fixedNetworkObjectId: 1
   showVisibleGizmo: 1
   Filterable: 0
+  SendRealtimeData: 1
   visibleSize: 1
 --- !u!1 &301963248 stripped
 GameObject:
@@ -1620,8 +1623,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  dynamicallySpawned: 1
+  fixedNetworkObjectId: 1
   showVisibleGizmo: 1
   Filterable: 0
+  SendRealtimeData: 1
   visibleSize: 1
 --- !u!1 &1306018690 stripped
 GameObject:
@@ -2347,6 +2353,26 @@ PrefabInstance:
     - target: {fileID: 71, guid: 981378ad8074d46f59ab1ded9a19caac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114, guid: 981378ad8074d46f59ab1ded9a19caac, type: 3}
+      propertyPath: syncedTransform.bandwidth
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114, guid: 981378ad8074d46f59ab1ded9a19caac, type: 3}
+      propertyPath: syncedTransform.padding
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114, guid: 981378ad8074d46f59ab1ded9a19caac, type: 3}
+      propertyPath: syncedTransform.rot_x_setting.resolution
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114, guid: 981378ad8074d46f59ab1ded9a19caac, type: 3}
+      propertyPath: syncedTransform.rot_z_setting.resolution
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114, guid: 981378ad8074d46f59ab1ded9a19caac, type: 3}
+      propertyPath: syncedTransform.rot_y_setting.resolution
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 981378ad8074d46f59ab1ded9a19caac, type: 3}

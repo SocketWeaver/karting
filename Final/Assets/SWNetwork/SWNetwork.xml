@@ -298,7 +298,7 @@
             Event Data of the OnRoomReadyEvent
             </summary>
         </member>
-        <member name="E:SWNetwork.SWLobby.OnLobbyConncetedEvent">
+        <member name="E:SWNetwork.SWLobby.OnLobbyConnectedEvent">
             <summary>
             Invoked when the local player connected to the lobby server.
             </summary>
@@ -678,6 +678,13 @@
             Indicates if the Networked GameObject can be filtered by the RealtimeFilter.
             </summary>
         </member>
+        <member name="F:SWNetwork.NetworkID.SendRealtimeData">
+            <summary>
+            Indicates if the Networked GameObject sends Realtime data to the game server.
+            Default value is true. 
+            Only controlls the behaviour for non-player controlled Networked GameObjects
+            </summary>
+        </member>
         <member name="P:SWNetwork.NetworkID.NetworkObjectId">
             <summary>
             Gets the network object identifier. Automatically assign at run time.
@@ -696,11 +703,29 @@
             </summary>
             <value><c>true</c> if is mine; otherwise, <c>false</c>.</value>
         </member>
+        <member name="P:SWNetwork.NetworkID.IsPlayer">
+            <summary>
+            Find out if networked GameObject is player controlled
+            </summary>
+            <value><c>true</c> if is player controlled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:SWNetwork.NetworkID.IsDynamicallySpawned">
+            <summary>
+            Find out if networked GameObject is dynamically spawned
+            All player controlled networked GameObject has to be dynamically spawned
+            </summary>
+            <value><c>true</c> if is dynamically spawned; otherwise, <c>false</c>.</value>
+        </member>
         <member name="P:SWNetwork.NetworkID.IsHost">
             <summary>
             Find out if the networked GameObject is owned by the room host
             </summary>
             <value><c>true</c> if is owned by the host; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:SWNetwork.NetworkID.DestroyFixedNetworkedGameObject">
+            <summary>
+            Destroies the fixed networked game object.
+            </summary>
         </member>
         <member name="F:SWNetwork.RealtimeFilter.RangeBuffer">
             <summary>
@@ -920,23 +945,23 @@
             <param name="prefabIndex">Prefab index.</param>
             <param name="spawnPointIndex">Spawn point index.</param>
         </member>
-        <member name="M:SWNetwork.SceneSpawner.SpanwForNonPlayer(System.Int32,System.Int32)">
+        <member name="M:SWNetwork.SceneSpawner.SpawnForNonPlayer(System.Int32,System.Int32)">
             <summary>
-            Spanws networked GameObject for non-player.
+            Spawns networked GameObject for non-player.
             </summary>
             <param name="prefabIndex">Prefab index.</param>
             <param name="spawnPointIndex">Spawn point index.</param>
         </member>
-        <member name="M:SWNetwork.SceneSpawner.SpawnForPlayer(System.Int32,UnityEngine.Vector3,UnityEngine.Quaternion)">
+        <member name="M:SWNetwork.SceneSpawner.SpawnForPlayer(System.Int32,UnityEngine.Vector3,UnityEngine.Quaternion,System.Int32)">
             <summary>
             Spawns networked GameObject for player.
             </summary>
             <param name="prefabIndex">Prefab index.</param>
             <param name="position">Position.</param>
         </member>
-        <member name="M:SWNetwork.SceneSpawner.SpanwForNonPlayer(System.Int32,UnityEngine.Vector3,UnityEngine.Quaternion)">
+        <member name="M:SWNetwork.SceneSpawner.SpawnForNonPlayer(System.Int32,UnityEngine.Vector3,UnityEngine.Quaternion,System.Int32)">
             <summary>
-            Spanws networked GameObject for non-player.
+            Spawns networked GameObject for non-player.
             </summary>
             <param name="prefabIndex">Prefab index.</param>
             <param name="position">Position.</param>
@@ -1119,17 +1144,27 @@
             prefab index
             </summary>
         </member>
+        <member name="F:SWNetwork.SWSpawnerRecord.s">
+            <summary>
+            spawnPoint index
+            </summary>
+        </member>
         <member name="F:SWNetwork.SWSpawnerRecord.t">
             <summary>
             NetworkObjectType
             </summary>
         </member>
-        <member name="F:SWNetwork.SWSpawnerRecord.vx">
+        <member name="F:SWNetwork.SWSpawnerRecord.d">
+            <summary>
+            data string
+            </summary>
+        </member>
+        <member name="F:SWNetwork.SWSpawnerRecord.positionX">
             <summary>
             position.
             </summary>
         </member>
-        <member name="F:SWNetwork.SWSpawnerRecord.rx">
+        <member name="F:SWNetwork.SWSpawnerRecord.rotationX">
             <summary>
             rotation.
             </summary>
