@@ -22,7 +22,7 @@ The starter project of the tutorial. It has all the assets you need to complete 
 The final playable multiplayer game.
 
 ## Community
-If you have questions about the tutorial, join our discourse forum at: https://discourse.socketweaver.com
+If you have questions about the tutorial, join our discord server at: https://discord.gg/qXt7Bkf
 
 <div >
 <a href="https://www.socketweaver.com"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://sw-router.sfo2.cdn.digitaloceanspaces.com/landing/logo-dark-text-300.png" height="30px" alt="Home"></a>
