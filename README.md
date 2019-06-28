@@ -2,8 +2,10 @@
 
 ![Alt text](demo.gif?raw=true "SocketWeaver Multiplayer racing demo")
 
-Medium Tutorial
+###  Medium Tutorial
+#### Part 1
 https://medium.com/@peterzhou43/how-to-create-a-multiplayer-racing-game-in-unity-part-1-11017072bc68
+#### Part 2
 https://medium.com/@peterzhou43/how-to-create-a-multiplayer-racing-game-in-unity-part-2-8cbaaecceb2
 
 ## Requirements
