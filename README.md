@@ -2,6 +2,10 @@
 
 ![Alt text](demo.gif?raw=true "SocketWeaver Multiplayer racing demo")
 
+Medium Tutorial
+https://medium.com/@peterzhou43/how-to-create-a-multiplayer-racing-game-in-unity-part-1-11017072bc68
+https://medium.com/@peterzhou43/how-to-create-a-multiplayer-racing-game-in-unity-part-2-8cbaaecceb2
+
 ## Requirements
 1. Unity 2018.3.4 or later. You can download the latest version of Unity here: https://unity3d.com/get-unity/download
 2. A SocketWeaver Account. You can create a SocketWeaver Account for free here: https://portal.socketweaver.com
