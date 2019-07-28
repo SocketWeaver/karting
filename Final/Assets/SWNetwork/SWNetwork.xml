@@ -777,10 +777,9 @@
             </summary>
             <value><c>true</c> if is owned by the host; otherwise, <c>false</c>.</value>
         </member>
-        <member name="M:SWNetwork.NetworkID.Destroy">
+        <member name="M:SWNetwork.NetworkID.Destroy(System.Single)">
             <summary>
-            Destroies the networked GameObject across the network.
-            Use DestroyFixedNetworkedGameObject() to destroy FixedNetworkedGameObject
+            Destroies the networked GameObject across the network with the specified delay time.
             </summary>
         </member>
         <member name="M:SWNetwork.NetworkID.DestroyFixedNetworkedGameObject">
